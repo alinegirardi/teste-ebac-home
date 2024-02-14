@@ -1,19 +1,40 @@
 ///<reference types="cypress"/>
+import { faker } from '@faker-js/faker';
 
-describe('Funcionalidade: Cadastro de notas', () =>{
-    it('Deve cadastrar as notas dos alunos', () =>{
-        cy.visit('https://diego-projeto-calculadoras-medias.vercel.app/')
-        cy.get('#nome-atividade').type('Prova de QA')
-        cy.get('#nota-atividade').type('7')
-        cy.get('button').click()
+describe('Funcionalidade: Cadastro', () => {
+ 
+  beforeEach(() => {
+    cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+  });
 
-        cy.get('#nome-atividade').type('Atividade 1')
-        cy.get('#nota-atividade').type('10')
-        cy.get('button').click()
+  it('Deve completar o cadastro com sucesso', () => {
+    cy.get('#reg_email').type(faker.internet.email())
+    cy.get('#reg_password').type('teste@123')
+    cy.get(':nth-child(4) > .button').click()
+    cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('exist')
+    cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
+    cy.get('#account_first_name').type(faker.person.firstName())
+    cy.get('#account_last_name').type(faker.person.lastName())
+    cy.get('.woocommerce-Button').click()
+    cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados')
 
-        cy.get('#nome-atividade').type('Atividade 2')
-        cy.get('#nota-atividade').type('9')
-        cy.get('button').click()
+  });
 
-      })
-})
+  it('Deve completar o cadastro com sucesso - Usando variáveis', () => {
+    var nome = faker.person.firstName()
+    var email = faker.internet.email(nome)
+    var sobrenome = faker.person.lastName()
+
+    cy.get('#reg_email').type(email)
+    cy.get('#reg_password').type('teste@123')
+    cy.get(':nth-child(4) > .button').click()
+    cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('exist')
+    cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
+    cy.get('#account_first_name').type(nome)
+    cy.get('#account_last_name').type(sobrenome)
+    cy.get('.woocommerce-Button').click()
+    cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados')
+
+  });
+
+});
