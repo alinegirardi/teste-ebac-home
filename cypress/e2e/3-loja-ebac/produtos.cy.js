@@ -1,17 +1,29 @@
 ///<reference types="cypress"/>
+import produtosPage from "../../support/page-objects/produtos.page";
 
 describe('Funcionalidade: Produtos', () => {
     
     beforeEach(() => {
-        cy.visit('produtos')
+        produtosPage.visitarUrl()
     });
 
     it('Deve selecionar um produto da lista', () => {
-        cy.get('.products > .row')
-            //.first().click()
-            //.last().click()
-            //.eq(2).click()
-            .contains('Ariel Roll Sleeve Sweatshirt').click()
-            cy.get('#tab-title-description > a').should('contain', 'Descrição')
+        produtosPage.buscarProdutoLista('Aero Daily Fitness Tee')
+        cy.get('#tab-title-description > a').should('contain', 'Descrição')
     });
+
+    it.only('Deve buscar um produto com sucesso', () => {
+       let produto = 'Helena Hooded Fleece'
+        produtosPage.buscarProduto(produto)
+       cy.get('.product_title').should('contain', produto)
+    });
+
+    it('Deve visitar a página do produto', () => {
+        
+    });
+
+    it('Deve adicionar produto ao carrinho', () => {
+        
+    });
+
 });
