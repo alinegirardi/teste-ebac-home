@@ -32,9 +32,7 @@ describe('Funcionalidade: Produtos', () => {
 
     it.only('Deve adicionar produto ao carrinho buscando da massa de dados', () => {
         cy.fixture('produtos').then(dados =>{
-        //busca produto pelo nome
         produtosPage.buscarProduto(dados[0].nomeProduto)
-        //adicionar ao carrinho
         produtosPage.addProdutoCarrinho(
             dados[0].tamanho,
             dados[0].cor,
