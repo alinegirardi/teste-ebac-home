@@ -12,7 +12,7 @@ describe ('Funcionalidade: Login', () => {
     //});
 
     it('Deve fazer login com sucesso', () =>{
-        cy.get('#username').type('aline.teste@teste.com.br')
+        cy.get('#username').type('alineteste@teste.com.br')
         cy.get('#password').type('teste@123')
         cy.get('.woocommerce-form > .button').click()
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá')
@@ -49,8 +49,8 @@ describe ('Funcionalidade: Login', () => {
         })
     })
 
-    it.only('Deve fazer login com sucesso - usando comandos customizado', () => {
-        cy.login('aline.teste@teste.com.br', 'teste@123')
+    it('Deve fazer login com sucesso - usando comandos customizado', () => {
+        cy.login('alineteste@teste.com.br', 'teste@123')
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('exist')
     });
     
