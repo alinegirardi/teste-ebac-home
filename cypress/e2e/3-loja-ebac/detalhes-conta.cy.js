@@ -6,7 +6,7 @@ describe('Funcionalidade: Detalhes da conta', () => {
         cy.visit('minha-conta/edit-account/')
         cy.fixture('perfil').then(login => {
             cy.login(login.usuario, login.senha)
-            //cy.login('aline.teste@teste.com.br', 'teste@123')
+            //cy.login('aline.teste@teste.com.br', 'teste@123') --> inves de utilizar dados fixos, colocamos o cy.login dentro do método fixtture
         })
     });
 

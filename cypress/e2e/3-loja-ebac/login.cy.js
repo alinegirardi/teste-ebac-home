@@ -54,5 +54,6 @@ describe ('Funcionalidade: Login', () => {
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('exist')
     });
     
+   
 })
 
